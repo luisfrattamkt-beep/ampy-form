@@ -25,19 +25,16 @@
     var canvas = document.getElementById("c");
     var ctx = canvas.getContext("2d");
 
-    var grad = ctx.createLinearGradient(0, 0, 1200, 630);
-    grad.addColorStop(0, "#6C5CE7");
-    grad.addColorStop(1, "#4B3FD1");
-    ctx.fillStyle = grad;
+    ctx.fillStyle = "#0A0A0A";
     ctx.fillRect(0, 0, 1200, 630);
 
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "700 110px -apple-system, Segoe UI, Arial, sans-serif";
+    ctx.fillStyle = "#A4D934";
+    ctx.font = "700 130px -apple-system, Segoe UI, Arial, sans-serif";
     ctx.textAlign = "center";
-    ctx.fillText("Ampy", 600, 330);
+    ctx.fillText("ampy", 600, 330);
 
     ctx.font = "500 36px -apple-system, Segoe UI, Arial, sans-serif";
-    ctx.fillStyle = "rgba(255,255,255,0.9)";
+    ctx.fillStyle = "rgba(245,245,242,0.85)";
     ctx.fillText("Conteúdo, estratégia e engenharia de oferta", 600, 410);
 
     document.getElementById("download").addEventListener("click", function () {

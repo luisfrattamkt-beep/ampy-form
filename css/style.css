@@ -4,15 +4,16 @@
    Nada mais no arquivo precisa mudar.
    ========================================================================== */
 :root {
-  --color-primary: #6C5CE7;       /* cor principal da marca */
-  --color-primary-dark: #5543d6;  /* usada no hover/active do botão principal */
-  --color-secondary: #00D9A3;     /* cor secundária / destaque */
-  --color-bg: #FAFAFA;            /* fundo da página (claro) */
-  --color-surface: #FFFFFF;       /* fundo dos cartões/opções */
-  --color-text: #15151A;          /* texto principal */
-  --color-text-muted: #6B6B76;    /* texto secundário */
-  --color-border: #E6E6EC;        /* bordas sutis */
-  --color-error: #D64545;
+  --color-primary: #A4D934;       /* verde limão da marca (logo) */
+  --color-primary-dark: #8BC01F;  /* usada no hover/active do botão principal */
+  --color-primary-text: #10140A;  /* texto sobre fundo verde (precisa ser escuro) */
+  --color-secondary: #C6FF4D;     /* verde limão mais claro, para destaques */
+  --color-bg: #0A0A0A;            /* fundo da página (preto, igual à logo) */
+  --color-surface: #161616;       /* fundo dos cartões/opções */
+  --color-text: #F5F5F2;          /* texto principal (quase branco) */
+  --color-text-muted: #9A9A9A;    /* texto secundário */
+  --color-border: #2A2A2A;        /* bordas sutis */
+  --color-error: #FF6B6B;
 
   /* Se a Ampy mandar uma fonte própria, troque aqui (e adicione o @font-face
      ou o <link> do Google Fonts no <head> do index.html). */
@@ -156,7 +157,7 @@ a:focus-visible {
   color: var(--color-primary);
   margin-bottom: 8px;
 }
-.logo img { height: 36px; display: block; }
+.logo img { height: 44px; display: block; }
 
 h1 {
   font-size: 24px;
@@ -216,7 +217,7 @@ h2 {
   padding: 18px 24px;
   font-size: 17px;
   font-weight: 700;
-  color: #fff;
+  color: var(--color-primary-text);
   background: var(--color-primary);
   border: none;
   border-radius: var(--radius-md);
@@ -287,6 +288,9 @@ h2 {
   border-color: var(--color-primary);
   outline: none;
 }
+.field input::placeholder {
+  color: var(--color-text-muted);
+}
 .field input.invalid {
   border-color: var(--color-error);
 }
@@ -314,7 +318,7 @@ h2 {
   height: 64px;
   border-radius: 50%;
   background: var(--color-secondary);
-  color: #fff;
+  color: var(--color-primary-text);
   font-size: 30px;
   display: flex;
   align-items: center;
