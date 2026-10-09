@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Gerar imagem de compartilhamento (OG) — Ampy</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #f2f2f5; padding: 24px; }
+  canvas { max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,.15); }
+  button { margin-top: 16px; padding: 12px 20px; font-size: 15px; font-weight: 700; border: none; border-radius: 10px; background: #6C5CE7; color: #fff; cursor: pointer; }
+  p { color: #555; font-size: 14px; max-width: 600px; }
+</style>
+</head>
+<body>
+  <h1>Gerador da imagem de compartilhamento (Open Graph)</h1>
+  <p>
+    Abra este arquivo direto no navegador (duplo clique). Ele desenha uma imagem 1200x630
+    com as cores da Ampy. Clique em "Baixar PNG" e salve o arquivo como
+    <code>assets/og-image.png</code> dentro da pasta do projeto. Depois é só fazer o deploy de novo.
+  </p>
+  <canvas id="c" width="1200" height="630"></canvas>
+  <br>
+  <button id="download">Baixar PNG</button>
+
+  <script>
+    var canvas = document.getElementById("c");
+    var ctx = canvas.getContext("2d");
+
+    var grad = ctx.createLinearGradient(0, 0, 1200, 630);
+    grad.addColorStop(0, "#6C5CE7");
+    grad.addColorStop(1, "#4B3FD1");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 1200, 630);
+
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "700 110px -apple-system, Segoe UI, Arial, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("Ampy", 600, 330);
+
+    ctx.font = "500 36px -apple-system, Segoe UI, Arial, sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,0.9)";
+    ctx.fillText("Conteúdo, estratégia e engenharia de oferta", 600, 410);
+
+    document.getElementById("download").addEventListener("click", function () {
+      var link = document.createElement("a");
+      link.download = "og-image.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    });
+  </script>
+</body>
+</html>

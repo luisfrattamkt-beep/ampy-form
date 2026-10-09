@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ampy — Fale com a gente</title>
+<meta name="description" content="Responda 3 perguntas rápidas e a Ampy entra em contato com você.">
+<meta name="theme-color" content="#6C5CE7">
+
+<!-- Open Graph / WhatsApp preview. Troque a URL abaixo pelo seu domínio final. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ampy">
+<meta property="og:title" content="Ampy — Fale com a gente">
+<meta property="og:description" content="Responda 3 perguntas rápidas e a gente entra em contato.">
+<meta property="og:image" content="https://SEU-DOMINIO.vercel.app/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://SEU-DOMINIO.vercel.app/">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%236C5CE7%22/><text x=%2250%22 y=%2266%22 font-size=%2258%22 font-family=%22Arial%2C sans-serif%22 font-weight=%22700%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app" id="app">
+
+  <div class="progress-wrap" id="progressWrap" hidden>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <button class="back-btn" id="backBtn" type="button" aria-label="Voltar" hidden>&#8249;</button>
+
+  <main class="screens" id="screens">
+
+    <section class="screen active" data-screen="opening">
+      <div class="screen-inner center">
+        <div class="logo" id="logo">Ampy</div>
+        <h1>Responda 3 perguntas rápidas e a gente entra em contato</h1>
+        <p class="subtitle">Leva menos de 1 minuto</p>
+        <button class="btn-primary" id="startBtn" type="button">Começar</button>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="tipo">
+      <div class="screen-inner">
+        <h2>Você é...</h2>
+        <div class="options" role="group" aria-label="Você é">
+          <button class="option" type="button" data-field="tipo" data-value="Profissional que atende clientes (personal, nutri, dentista, consultor...)">
+            Profissional que atende clientes
+            <span class="option-sub">(personal, nutri, dentista, consultor...)</span>
+          </button>
+          <button class="option" type="button" data-field="tipo" data-value="Marca ou empresa">
+            Marca ou empresa
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="desafio">
+      <div class="screen-inner">
+        <h2>O que mais trava seu conteúdo hoje?</h2>
+        <div class="options" role="group" aria-label="O que mais trava seu conteúdo hoje?">
+          <button class="option" type="button" data-field="desafio" data-value="Falta de tempo">Falta de tempo</button>
+          <button class="option" type="button" data-field="desafio" data-value="Falta de qualidade nos vídeos">Falta de qualidade nos vídeos</button>
+          <button class="option" type="button" data-field="desafio" data-value="Não sei o que postar">Não sei o que postar</button>
+          <button class="option" type="button" data-field="desafio" data-value="Ainda nem comecei">Ainda nem comecei</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="objetivo">
+      <div class="screen-inner">
+        <h2>O que você quer que o conteúdo traga?</h2>
+        <div class="options" role="group" aria-label="O que você quer que o conteúdo traga?">
+          <button class="option" type="button" data-field="objetivo" data-value="Mais clientes">Mais clientes</button>
+          <button class="option" type="button" data-field="objetivo" data-value="Mais autoridade">Mais autoridade</button>
+          <button class="option" type="button" data-field="objetivo" data-value="Ser mais conhecido">Ser mais conhecido</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="contato">
+      <div class="screen-inner">
+        <h2>Pronto. Pra onde a gente te chama?</h2>
+        <form id="contactForm" novalidate>
+          <label class="field">
+            <span>Nome</span>
+            <input type="text" id="nomeInput" name="nome" autocomplete="name" required>
+            <span class="error-msg" id="nomeError" hidden>Informe seu nome</span>
+          </label>
+          <label class="field">
+            <span>WhatsApp</span>
+            <input type="tel" id="whatsappInput" name="whatsapp" inputmode="numeric" autocomplete="tel" placeholder="(00) 00000-0000" maxlength="15" required>
+            <span class="error-msg" id="whatsappError" hidden>Informe um WhatsApp válido</span>
+          </label>
+          <label class="field">
+            <span>@ do Instagram <small>(opcional)</small></span>
+            <input type="text" id="instaInput" name="instagram" autocomplete="off" placeholder="@seuusuario">
+          </label>
+          <button type="submit" class="btn-primary" id="submitBtn">Enviar</button>
+          <div class="error-banner" id="submitError" hidden>
+            <p>Não conseguimos enviar agora. Verifique sua internet — suas respostas estão salvas.</p>
+            <button type="button" class="btn-retry" id="retryBtn">Tentar novamente</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="obrigado">
+      <div class="screen-inner center">
+        <div class="check-icon" aria-hidden="true">&#10003;</div>
+        <h2>Recebido!</h2>
+        <p class="subtitle">A gente te chama no WhatsApp em breve.</p>
+        <a class="btn-secondary" id="whatsappLink" href="#" target="_blank" rel="noopener">Falar agora no WhatsApp</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

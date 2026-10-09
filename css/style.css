@@ -1,0 +1,335 @@
+/* ==========================================================================
+   AMPY — identidade visual
+   Troque só os valores abaixo quando a Ampy mandar fonte, cores e logo.
+   Nada mais no arquivo precisa mudar.
+   ========================================================================== */
+:root {
+  --color-primary: #6C5CE7;       /* cor principal da marca */
+  --color-primary-dark: #5543d6;  /* usada no hover/active do botão principal */
+  --color-secondary: #00D9A3;     /* cor secundária / destaque */
+  --color-bg: #FAFAFA;            /* fundo da página (claro) */
+  --color-surface: #FFFFFF;       /* fundo dos cartões/opções */
+  --color-text: #15151A;          /* texto principal */
+  --color-text-muted: #6B6B76;    /* texto secundário */
+  --color-border: #E6E6EC;        /* bordas sutis */
+  --color-error: #D64545;
+
+  /* Se a Ampy mandar uma fonte própria, troque aqui (e adicione o @font-face
+     ou o <link> do Google Fonts no <head> do index.html). */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --max-width: 480px;
+}
+
+/* ---------- reset básico ---------- */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+h1, h2, p { margin: 0; }
+button, input { font-family: inherit; }
+a { color: inherit; }
+
+/* visível apenas para quem navega por teclado/leitor de tela */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* foco sempre visível, acessibilidade */
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* ---------- layout geral ---------- */
+.app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 14px 20px 0;
+  background: var(--color-bg);
+}
+.progress-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-border);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--color-primary);
+  border-radius: 999px;
+  transition: width .35s ease;
+}
+
+.back-btn {
+  position: fixed;
+  top: 14px;
+  left: 12px;
+  z-index: 20;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 28px;
+  line-height: 1;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: .7;
+  transition: opacity .15s ease, background .15s ease;
+}
+.back-btn:hover { opacity: 1; background: var(--color-border); }
+
+.screens {
+  flex: 1;
+  position: relative;
+  display: flex;
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---------- telas / transição ---------- */
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(16px);
+  pointer-events: none;
+  transition: opacity .28s ease, transform .28s ease;
+  padding: 24px;
+}
+.screen.active {
+  position: relative;
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+.screen.leaving-back {
+  transform: translateX(-16px);
+}
+
+.screen-inner {
+  width: 100%;
+}
+.screen-inner.center {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ---------- textos ---------- */
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+.logo img { height: 36px; display: block; }
+
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 22px;
+}
+.subtitle {
+  font-size: 16px;
+  color: var(--color-text-muted);
+}
+
+/* ---------- opções de múltipla escolha ---------- */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.option {
+  width: 100%;
+  text-align: left;
+  padding: 18px 20px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  transition: border-color .15s ease, transform .1s ease, background .15s ease;
+}
+.option:hover { border-color: var(--color-primary); }
+.option:active { transform: scale(0.98); }
+.option.selected {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface));
+}
+.option-sub {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+/* ---------- botões ---------- */
+.btn-primary {
+  width: 100%;
+  padding: 18px 24px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  min-height: 56px;
+  transition: background .15s ease, transform .1s ease;
+}
+.btn-primary:hover { background: var(--color-primary-dark); }
+.btn-primary:active { transform: scale(0.98); }
+.btn-primary:disabled { opacity: .6; cursor: not-allowed; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  min-height: 56px;
+  margin-top: 8px;
+  transition: background .15s ease;
+}
+.btn-secondary:hover { background: color-mix(in srgb, var(--color-primary) 18%, transparent); }
+
+.btn-retry {
+  margin-top: 10px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-error);
+  background: transparent;
+  border: 2px solid var(--color-error);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* ---------- formulário de contato ---------- */
+#contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+.field input {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--color-text);
+  padding: 16px 16px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  min-height: 56px;
+}
+.field input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+.field input.invalid {
+  border-color: var(--color-error);
+}
+.error-msg {
+  color: var(--color-error);
+  font-size: 13px;
+  font-weight: 600;
+}
+.error-banner {
+  background: color-mix(in srgb, var(--color-error) 8%, transparent);
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  text-align: center;
+}
+.error-banner p {
+  font-size: 14px;
+  color: var(--color-error);
+  font-weight: 600;
+}
+
+/* ---------- agradecimento ---------- */
+.check-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: #fff;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+/* ---------- telas maiores ---------- */
+@media (min-width: 540px) {
+  .screen { padding: 40px; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 26px; }
+}
+
+/* respeita usuários que preferem menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  .screen, .progress-fill { transition: none; }
+}
