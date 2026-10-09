@@ -106,6 +106,7 @@ a:focus-visible {
   transition: opacity .15s ease, background .15s ease;
 }
 .back-btn:hover { opacity: 1; background: var(--color-border); }
+.back-btn[hidden] { display: none; }
 
 .screens {
   flex: 1;
